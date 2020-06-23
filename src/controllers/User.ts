@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import UserSchema, { iUser } from '../models/User';
+import UserSchema from '../models/User';
 
 class UserController {
   async index(_request: Request, response: Response): Promise<Response<any>> {
     try {
-      const users = await UserSchema.find() as iUser[];
+      const users = await UserSchema.find();
 
       if (!users.length) {
         return response.status(404).json({
@@ -24,7 +24,7 @@ class UserController {
     try {
       const { userId } = request.params;
 
-      const user = await UserSchema.findById(userId) as iUser;
+      const user = await UserSchema.findById(userId);
 
       if (!user) {
         return response.status(404).json({
@@ -42,7 +42,7 @@ class UserController {
 
   async store(request: Request, response: Response): Promise<Response<any>> {
     try {
-      const userData = request.body as iUser;
+      const userData = request.body;
 
       const user = await UserSchema.create(userData);
 

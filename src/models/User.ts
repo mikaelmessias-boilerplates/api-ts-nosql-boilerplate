@@ -1,25 +1,17 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose';
 
-export interface iUser extends Document{
-  name: string,
-  email: string,
-  password: string,
+@modelOptions({ schemaOptions: { collection: 'users' } })
+class User {
+  @prop({ required: true })
+  public name!: string;
+
+  @prop({ unique: true, required: true })
+  public email!: string;
+
+  @prop({ required: true })
+  public password!: string;
 }
 
-const UserSchema: Schema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-});
+const UserModel = getModelForClass(User);
 
-export default mongoose.model<iUser>('User', UserSchema, 'users');
+export default UserModel;
