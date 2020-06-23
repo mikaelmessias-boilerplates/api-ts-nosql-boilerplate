@@ -1,5 +1,5 @@
 import express from 'express';
-import UserController from './controllers/UserController';
+import UserController from './controllers/User';
 // import multer from 'multer';
 // import multerConfig from './utils/multer';
 
