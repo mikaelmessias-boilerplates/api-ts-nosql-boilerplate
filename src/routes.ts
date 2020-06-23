@@ -1,5 +1,7 @@
 import express from 'express';
 import UserController from './controllers/UserController';
+// import multer from 'multer';
+// import multerConfig from './utils/multer';
 
 const userController = new UserController();
 
